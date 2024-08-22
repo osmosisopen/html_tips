@@ -89,7 +89,7 @@ def json_to_html(json_data):
 
 @app.route('/')
 def index():
-    return render_template("hello.html")
+    return render_template("yaml2table.html")
 
 
 @app.route("/click", methods=["GET", "POST"])
