@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        {% if someTest %}
+            var jsonData = '{{ json_data | tojson}}';
+        {% endif %}
+
+    </script>
+    <script src="{{ url_for('static', filename='htmx.min.js') }}" lazy></script>
+    <script src="{{ url_for('static', filename='test.js') }}" lazy></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table { border:none; border-collapse:collapse; }
+		th { background-color: darkgray; color: black; white-space:normal; padding:5px; width:70px; border:1px solid silver; border-collapse:collapse; vertical-align:top }
+		td { padding:5px; border:1px solid silver; border-collapse:collapse; }
+        </style>
+</head>
+<body >
+    <form id='form' hx-encoding='multipart/form-data' hx-post='/upload'>
+        <input type='file' name='file'>
+        <button>
+            Upload
+        </button>
+        <!-- <progress id='progress' value='0' max='100'></progress> -->
+    </form>
+    <!-- <script>
+        htmx.on('#form', 'htmx:xhr:progress', function(evt) {
+          htmx.find('#progress').setAttribute('value', evt.detail.loaded/evt.detail.total * 100)
+        });
+    </script> -->
+
+    <div hx-target="this" hx-swap="outerHTML">
+        <button hx-post="/convert" class="btn primary">
+        Convert
+        </button>
+    </div>
+
+    <!-- <button type="button" onclick="yaml2html()">Test</button> -->
+
+    <div id="my-table"></div>
+
+</body>
+</html>
